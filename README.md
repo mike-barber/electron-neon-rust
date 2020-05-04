@@ -1,6 +1,9 @@
 # Rust, Neon, Electron
 
-I wanted to create a working example, particularly one that would work on Windows. This repo is forked from https://github.com/electron/electron-quick-start and I have added to it following the instructions on the Neon site: https://neon-bindings.com/docs/electron-apps/
+I wanted to create a working example, particularly one that would work on Windows. 
+
+* This repo is forked from https://github.com/electron/electron-quick-start
+* I have added to it following the instructions on the Neon site: https://neon-bindings.com/docs/electron-apps/
 
 ## Testing
 
@@ -18,26 +21,31 @@ For a coder not familiar with npm or Node, there are some things to be aware of:
 
 On the Rust side, 
 
-* `npm i` installs the dependencies, and our local `hello` package is configured to build correctly on installation
-    * `"install": "electron-build-env neon build --release"` 
-* The build calls are in `packages.js`
+* Don't despair; the Rust build only takes a while on the first run. Incremental builds after changes are quick.
+* `npm i` installs the dependencies, 
+    * Our local `hello` package is configured to build correctly on installation:
+        * [package.json](hello/package.json) contains `"install": "electron-build-env neon build --release"` 
+* The main build script is in the root `packages.js`
 * `npm run build` will do the Rust build of the native libraries
-    * `hello` is already correctly built, but this will re-build it if there are changes
-    * `@amilajack/neon-hello` is *not* correctly built, as it is built for Node without Electron; the build call here re-builds it targeting electron; it's not an electron-specific example: https://github.com/amilajack/neon-hello
+    * Local `hello` is already correctly built as noted above, but this will re-build it if there are changes
+    * Imported `@amilajack/neon-hello` is *not* correctly built, as it is built for Node without Electron; the build call here re-builds it targeting electron; it's not an electron-specific example: https://github.com/amilajack/neon-hello
     * `electron-build-env` sets up the correct environment variables to target Electron, rather than normal Node
-    * `neon build -p hello --release` uses `neon-cli` to run the Rust build; needs to be `--release` on Windows
-* `hello` was created using neon-cli by doing `neon new hello`
+    * `neon build -p {path} --release` uses `neon-cli` to run the Rust build; Note that it needs to be `--release` on Windows
+* Local `hello` was created using neon-cli by doing `neon new hello`
     * on Windows, it's a build dependency, so accessible in `node_modules\.bin\neon` 
-* `hello` was modified to export the native module with `module.exports = require('../native');` in `hello/lib/index.js`
+    * `hello` was modified to export the native module with `module.exports = require('../native');` in `hello/lib/index.js`
 
 ## Tooling
 
+This project is working on Windows 10 and Ubuntu 20.04 with the following tooling:
+
 * Rust 1.43 (stable)
-* Node.js v12.16.3
+* npm 6.14.4
+* Visual Studio 2019 Community Edition, with MSVC v142 (v14.25) installed (only on Windows of course)
 
 # Original template
 
-Based on this: https://github.com/electron/electron-quick-start
+Based on this: https://github.com/electron/electron-quick-start; I've left the original documentation below. Refer to the original repo for updates.
 
 # electron-quick-start
 
