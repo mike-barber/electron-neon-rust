@@ -1,6 +1,10 @@
 # Rust, Neon, Electron
 
-I wanted to create a working example, particularly one that would work on Windows. 
+Electron running native Rust code is a very appealing idea: we get a decent cross-platform user interface with all the performance of native Rust underneath it, and the convenience of Node.js in the middle.
+
+Neon? It's a really useful project that permits us to write native Rust modules that work with Node.js. 
+
+I wanted to create a working example, particularly one that works on Windows as well as Linux. Probably works on Mac too.
 
 * This repo is forked from https://github.com/electron/electron-quick-start
 * I have added to it following the instructions on the Neon site: https://neon-bindings.com/docs/electron-apps/
