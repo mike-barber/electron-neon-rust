@@ -2,26 +2,37 @@
 
 I wanted to create a working example, particularly one that would work on Windows. This repo is forked from https://github.com/electron/electron-quick-start and I have added to it following the instructions on the Neon site: https://neon-bindings.com/docs/electron-apps/
 
+## Testing
+
+* `npm i` installs the dependencies
+* `npm run build` runs native Rust builds targeting Electron specifically
+* `npm start` starts the app
+
+## Details
+
 For a coder not familiar with npm or Node, there are some things to be aware of: 
 
 * Node integration needs to be enabled in `main.js`: `nodeIntegration: true`
 * Neon bindings are not currently context aware or NAPI, so there are deprecation warnings. I'd expect this to improve at some point. 
+* I had to comment out `<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">` to enable Electron to run the native packages; there might be a better way to do this.
 
 On the Rust side, 
 
-* `npm run build` will do the Rust build of the native libraries
-* There are two build calls -- one for the external package and for the package contained in this repo, `hello`
+* `npm i` installs the dependencies, and our local `hello` package is configured to build correctly on installation
+    * `"install": "electron-build-env neon build --release"` 
 * The build calls are in `packages.js`
-* `electron-build-env neon build -p hello --release` builds in the internal package
+* `npm run build` will do the Rust build of the native libraries
+    * `hello` is already correctly built, but this will re-build it if there are changes
+    * `@amilajack/neon-hello` is *not* correctly built, as it is built for Node without Electron; the build call here re-builds it targeting electron; it's not an electron-specific example: https://github.com/amilajack/neon-hello
     * `electron-build-env` sets up the correct environment variables to target Electron, rather than normal Node
     * `neon build -p hello --release` uses `neon-cli` to run the Rust build; needs to be `--release` on Windows
-* `hello` was created using neon-cli by doing `neon new hello
+* `hello` was created using neon-cli by doing `neon new hello`
     * on Windows, it's a build dependency, so accessible in `node_modules\.bin\neon` 
 * `hello` was modified to export the native module with `module.exports = require('../native');` in `hello/lib/index.js`
 
+# Original template
 
-
-
+Based on this: https://github.com/electron/electron-quick-start
 
 # electron-quick-start
 

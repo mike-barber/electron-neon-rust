@@ -4,7 +4,7 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "build": "electron-build-env neon build -p hello --release",
+    "build": "electron-build-env neon build -p node_modules/@amilajack/neon-hello --release && electron-build-env neon build -p hello --release",
     "start": "electron ."
   },
   "repository": "https://github.com/electron/electron-quick-start",
