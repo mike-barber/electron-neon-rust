@@ -1,19 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
 
-    <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <title>Hello World!</title>
+</head>
+
+<body>
+  <script>
+    hello = require('hello')
+  </script>
+
+  <h1>Rust local package hello</h1>
+  <script>
+    try {
+      document.write(`<pre>${hello.hello()}</pre>`);
+    } catch (e) {
+      document.write(`<pre>${e.stack}</pre>`);
+    }
+  </script>
+
+
+  <h1>Rust externally imported library</h1>
+  <pre>@amilajack/neon-hello</pre>
+  <script>
+    try {
+      document.write(`<pre>${require('@amilajack/neon-hello').helloWorld()}<pre>`);
+    } catch (e) {
+      document.write(`<pre>${e.stack}</pre>`);
+    }
+  </script>
+
+
+  We are using Node.js <span id="node-version"></span>,
+  Chromium <span id="chrome-version"></span>,
+  and Electron <span id="electron-version"></span>.
+
+  <!-- You can also require other files to run in this process -->
+  <script src="./renderer.js"></script>
+</body>
+
 </html>
