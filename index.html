@@ -4,20 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
   <title>Hello World!</title>
 </head>
 
 <body>
-  <script>
-    hello = require('hello')
-  </script>
 
   <h1>Rust local package hello</h1>
   <script>
     try {
-      document.write(`<pre>${hello.hello()}</pre>`);
+      document.write(`<pre>${require('hello').hello()}</pre>`);
     } catch (e) {
       document.write(`<pre>${e.stack}</pre>`);
     }

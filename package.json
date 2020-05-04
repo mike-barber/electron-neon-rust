@@ -23,6 +23,7 @@
     "neon-cli": "^0.4.0"
   },
   "dependencies": {
-    "@amilajack/neon-hello": "^1.0.2"
+    "@amilajack/neon-hello": "^1.0.2",
+    "hello": "./hello"
   }
 }
