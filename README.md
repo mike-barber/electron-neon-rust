@@ -30,6 +30,11 @@ On the Rust side,
     * on Windows, it's a build dependency, so accessible in `node_modules\.bin\neon` 
 * `hello` was modified to export the native module with `module.exports = require('../native');` in `hello/lib/index.js`
 
+## Tooling
+
+* Rust 1.43 (stable)
+* Node.js v12.16.3
+
 # Original template
 
 Based on this: https://github.com/electron/electron-quick-start
